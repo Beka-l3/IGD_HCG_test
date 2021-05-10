@@ -13,6 +13,7 @@ public class ManageResource : MonoBehaviour{
     void Start(){
         currentSceneDiamondAmount = 0;
         multiplier = 0;
+        diamondText.text = diamondAmount.ToString();
     }
 
     public void DiamondCollected(){
@@ -27,6 +28,7 @@ public class ManageResource : MonoBehaviour{
     }
 
     public void FinishingMultiplier(){
+        if(multiplier == 0) multiplier++;
         diamondAmount += currentSceneDiamondAmount * (multiplier-1);
         diamondText.text = diamondAmount.ToString();
     }
