@@ -6,6 +6,7 @@ public class BoxScript : MonoBehaviour{
    
     public GameObject player;
     public float inLavaLimit = 0.25f;
+    public GameObject eventSys;
 
     private bool withPlayer;
     private bool firstBox;
@@ -72,6 +73,8 @@ public class BoxScript : MonoBehaviour{
                 withPlayer = false;
                 if(other.tag == "Wall") StartCoroutine(LeavePlayer(false));
                 else{
+                    // Debug.Log(other);
+                    if(!firstBox) eventSys.GetComponent<ManageResource>().IncreaseFinishingMultiplier();
                     StartCoroutine(LeavePlayer(true));
                     Camera.main.GetComponent<CameraTrail>().IncreaseFinishOffset();
                 }

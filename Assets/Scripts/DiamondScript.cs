@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DiamondScript : MonoBehaviour{
 
     public Text diamondTxt;
+    public GameObject eventSys;
 
     private int yFacrot;
     private float elapsed;
@@ -35,10 +36,7 @@ public class DiamondScript : MonoBehaviour{
         if(collected) return;
         collected = true;
         
-        int amount;
-        int.TryParse(diamondTxt.text, out amount);
-        amount++;
-        diamondTxt.text = amount.ToString();
+        eventSys.GetComponent<ManageResource>().DiamondCollected();
         Destroy(gameObject);
     }
 }

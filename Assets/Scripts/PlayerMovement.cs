@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour {
     public GameObject restartBtn;
     public GameObject restartBtnIcon;
     public GameObject hover;
+    public GameObject eventSys;
 
     private CharacterController myCharacterController;
     private Vector3 turningDirection;
@@ -40,7 +41,7 @@ public class PlayerMovement : MonoBehaviour {
             touchData = Input.mousePosition;
             float difference = (touchData.x - firstTouch.x);
 
-            myCharacterController.Move(transform.right * difference * Time.deltaTime);            
+            myCharacterController.Move(transform.right * difference/2 * Time.deltaTime);            
             firstTouch = Input.mousePosition;
         }
     }
@@ -65,6 +66,7 @@ public class PlayerMovement : MonoBehaviour {
         restartBtn.SetActive(true);
         restartBtnIcon.SetActive(false);
         Camera.main.GetComponent<CameraTrail>().RotateCamera();
+        eventSys.GetComponent<ManageResource>().FinishingMultiplier();
         // Debug.Log("Finish");
     }
     public void Lost(){
@@ -72,6 +74,7 @@ public class PlayerMovement : MonoBehaviour {
         hover.SetActive(true);
         restartBtn.SetActive(true);
         restartBtnIcon.SetActive(false);
+        eventSys.GetComponent<ManageResource>().FinishingMultiplier();
         // Debug.Log("Lost");
     }
 
